@@ -51,9 +51,7 @@ $(document).ready(function(){
 	var n = prompt('Choose a number between 1 and 19');
 	var newArray = chunk(imgArray, n);
 	for (var i = 0; i < newArray.length; i++){
-		var item = '<div data-attribute=' + i + '>' + newArray[i] + '</div'
+		var item = '<div data-attribute=' + i + '>' + newArray[i].join(' ') + '</div'
 		$('.content').append(item);
 	}
-	console.log("newArray", newArray);
-	// $('.content').append(chunk(imgArray,7));
 });
