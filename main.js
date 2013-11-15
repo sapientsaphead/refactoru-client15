@@ -6,17 +6,17 @@
 // 	var chunk = parseInt((arr.length/n));
 // 	if (arr.length % n === 0) {
 // 		for (var i = 0; i < n; i++){
-// 			start += chunk
+// 			start += chunk;
 // 			output.push(arr.splice(0, chunk));
 // 		}
 // 	}
 // 	else if (arr.length % n !== 0){
 // 		for (var i = 0, len = (arr.length % n); i < len; i++) {
-// 			start += (chunk+1)
+// 			start += (chunk+1);
 // 			output.push(arr.splice(0, chunk+1));
 // 		}
 // 		for (var i = len; i < n; i++) {
-// 			start += chunk
+// 			start += chunk;
 // 			output.push(arr.splice(0, chunk));
 // 		}
 // 	}
@@ -29,11 +29,11 @@ var chunk = function(arr, n) {
 	var start = 0, output = [];
 	var chunk = parseInt((arr.length/n));
 	for (var i = 0, len = (arr.length % n); i < len; i++) {
-		start += (chunk+1)
+		start += (chunk+1);
 		output.push(arr.splice(0, chunk+1));
 	}
 	for (var i = len; i < n; i++) {
-		start += chunk
+		start += chunk;
 		output.push(arr.splice(0, chunk));
 	}
 	return output;      
@@ -48,10 +48,17 @@ var imgArray = ['<img src="images/allan.jpg">','<img src="images/brianh.jpg">','
 				'<img src="images/yalcin.jpg">']
 
 $(document).ready(function(){
-	var n = prompt('Choose a number between 1 and 19');
-	var newArray = chunk(imgArray, n);
-	for (var i = 0; i < newArray.length; i++){
-		var item = '<div data-attribute=' + i + '>' + newArray[i].join(' ') + '</div'
-		$('.content').append(item);
-	}
+	var newArray = [];
+	$('input').on('keyup', function(e){
+		if(e.keyCode === 13){
+			$('.content').val('');
+			var n = parseInt($('input').val());
+			$('input').val('');
+			newArray = chunk(imgArray, n);
+			for (var i = 0; i < newArray.length; i++){
+				var item = '<div data-attribute=' + i + '>' + newArray[i].join(' ') + '</div'
+				$('.content').append(item);
+			}
+		}
+	});
 });
